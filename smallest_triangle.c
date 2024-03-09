@@ -133,7 +133,7 @@ int main(void){
     printf("read %d points\n", numOPts);
 
     for (int i = 0; i < 3; i++){
-        printf("%f, %f\n", smlst[i][0], smlst[i][1]);
+        printf("%.2f, %.2f\n", smlst[i][0], smlst[i][1]);
     }
 
     printf("This %s a triangle\n", is_triangle(smlst));
