@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include <math.h>
+#include<math.h>
 #include<string.h>
 
 // get perimeter of triangle(or not) formed by three points
@@ -26,28 +26,13 @@ float get_length(float pt1[2], float pt2[2]){
 
 // determin if any three given points forms a triangle
 char * is_triangle(float pts[3][2]){
-    float lengths[3];
+    float area = 
+    (pts[0][0] * (pts[1][1] - pts[2][1])) + 
+    (pts[1][0] * (pts[0][1] - pts[2][1])) + 
+    (pts[2][0] * (pts[0][1] - pts[1][1]));
 
-    lengths[0] = get_length(pts[0], pts[1]);
-    lengths[1] = get_length(pts[0], pts[2]);
-    lengths[2] = get_length(pts[1], pts[2]);
-
-    float lngst_side = 0;
-
-    for (int i = 0; i < sizeof(lengths); i++){
-        if (lengths[i] > lngst_side) lngst_side = lengths[i];
-
-        float otr_sum;
-
-        for (int j = 0; j < sizeof(lengths); j++){
-            if (j == 1) continue;
-            else otr_sum += lengths[j];
-        }
-
-        return "is";
-    }
-
-    return "is not";
+    if (area == 0) return "is not";
+    else return "is";
 }
 
 int main(void){
@@ -149,7 +134,7 @@ int main(void){
         printf("%f, %f\n", smlst[i][0], smlst[i][1]);
     }
 
-    printf("This %s a triangle", is_triangle(smlst));
+    printf("This %s a triangle\n", is_triangle(smlst));
 
     return 0;
 }
