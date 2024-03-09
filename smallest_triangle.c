@@ -25,6 +25,8 @@ float get_length(float pt1[2], float pt2[2]){
 }
 
 // determin if any three given points forms a triangle
+// note: tried comparing the length of the longest line and the sum of two others, 
+//       which always returns "is" for some reason
 char * is_triangle(float pts[3][2]){
     float area = 
     (pts[0][0] * (pts[1][1] - pts[2][1])) + 
@@ -65,10 +67,10 @@ int main(void){
     // filter out three closest points
     // first loop: get initial point 
     for (int i = 0; i < numOPts; i++){
-        float tri_pt[3][2] = {{pts[i][0], pts[i][1]}, 0, 0};
+        float tri_pt[3][2] = {{pts[i][0], pts[i][1]}, {0, 0}, {0, 0}};
 
         // second loop: get 1st closest point
-        int clst_index;
+        int clst_index = 0;
         float dist = 142;
         for (int j = 0; j < numOPts; j++){
             // ignore repeated points
@@ -112,7 +114,7 @@ int main(void){
     // get perimeter from all triangles and find the smallest one
     float perm = 242;
 
-    int sml_index;
+    int sml_index = 0;
 
     for (int i = 0; i < numOPts; i++){
         if (get_perm(tri_pts[i]) < perm){
