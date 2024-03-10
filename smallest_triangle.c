@@ -33,7 +33,7 @@ char * is_triangle(float pts[3][2]){
     (pts[1][0] * (pts[0][1] - pts[2][1])) + 
     (pts[2][0] * (pts[0][1] - pts[1][1]));
 
-    if (area == 0) return "is not";
+    if (area < 0.001) return "is not";
     else return "is";
 }
 
@@ -58,6 +58,13 @@ int main(void){
 
     // ignore numOPts < 3
     if (numOPts < 3){
+        printf("read %d points\n", numOPts);
+
+        for (int i = 0; i < numOPts; i++){
+            printf("%.2f, %.2f\n", pts[i][0], pts[i][1]);
+        }
+
+        printf("This is not a triangle\n");
         return 0;
     }
 
